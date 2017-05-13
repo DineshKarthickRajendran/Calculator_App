@@ -25,7 +25,7 @@ public class MathUtil {
             return builder.toString().replaceAll(MATH_EXPRESSION,MATH_PREFIX+"$1");
         }
 
-        return builder.toString().replaceAll("gauss","#gauss");
+        return builder.toString();
 
     }
 }

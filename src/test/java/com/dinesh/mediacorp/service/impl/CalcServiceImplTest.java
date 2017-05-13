@@ -14,13 +14,21 @@ public class CalcServiceImplTest {
     public void processExpressionTest(){
 
         CalcService calcService = new CalcServiceImpl();
-        /*System.out.println(calcService.processExpression("1+16.5/(2+gauss(5,1,1,1))"));*/
 
         //Addition
-        Assert.assertEquals(6.0,calcService.processExpression("1+(2+3)"));
+        Assert.assertEquals("6.0",calcService.processExpression("1+(2+3)"));
 
         //subtraction
-        Assert.assertEquals(0.0,calcService.processExpression("1+(2-3)"));
+        Assert.assertEquals("0.0",calcService.processExpression("1+(2-3)"));
+
+        //power off
+        Assert.assertEquals("9.0",calcService.processExpression("1+(pow(2,3))"));
+
+        //square root
+        Assert.assertEquals("3.0",calcService.processExpression("1+(sqrt(4))"));
+
+        //guassian
+        Assert.assertEquals("3.357142857142857",calcService.processExpression("1+16.5/(2+(gauss(5,1,1,1)))"));
 
     }
 

@@ -27,10 +27,12 @@ public class CalcServiceImpl implements CalcService{
         ExpressionParser parser = new SpelExpressionParser();
         StandardEvaluationContext context = new StandardEvaluationContext();
         StringBuilder builder = new StringBuilder(MathUtil.parse(expression));
+         String parsedExpression =  builder.toString().replaceAll("gauss", "#gauss");
+            System.out.println("parsedExpression "+parsedExpression);
 
         context.registerFunction("gauss",CalcRegisterFunction.class.getDeclaredMethod("gauss", new Class[]{Double.class,Double.class,Double.class,Double.class}));
 
-         calcResult = (Double) parser.parseExpression(builder.toString()).getValue(context, Double.class);
+         calcResult = (Double) parser.parseExpression(parsedExpression).getValue(context, Double.class);
 
        } catch (NoSuchMethodException e) {
             e.printStackTrace();
