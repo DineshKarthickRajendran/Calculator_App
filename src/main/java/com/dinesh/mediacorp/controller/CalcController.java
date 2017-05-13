@@ -1,5 +1,9 @@
 package com.dinesh.mediacorp.controller;
 
+import com.dinesh.mediacorp.service.CalcService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,9 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CalcController {
 
-    public String defineCalculator(@RequestParam("inputExpression") String inputExpression){
+    @Autowired
+    CalcService calcService;
 
-        return null;
+    @RequestMapping("/calculate/{inputExpression}")
+    public String defineCalculator(@PathVariable("inputExpression") String inputExpression){
+
+        return calcService.processExpression(inputExpression);
 
     }
 
