@@ -11,7 +11,7 @@ import org.junit.Test;
 public class CalcServiceImplTest {
 
     @Test
-    public void processExpressionTest(){
+    public void processExpressionTest() throws Exception {
 
         CalcService calcService = new CalcServiceImpl();
 
@@ -27,13 +27,13 @@ public class CalcServiceImplTest {
         //square root
         Assert.assertEquals("3.0",calcService.processExpression("1+(sqrt(4))"));
 
-        //guassian
+        //gaussian
         Assert.assertEquals("3.357142857142857",calcService.processExpression("1+16.5/(2+(gauss(5,1,1,1)))"));
 
     }
 
     @Test(expected = Exception.class)
-    public void processExpressionExceptionTest(){
+    public void processExpressionExceptionTest() throws Exception {
 
         CalcService calcService = new CalcServiceImpl();
         calcService.processExpression("1+16.5/(2+gauss(5,1,0,1))");

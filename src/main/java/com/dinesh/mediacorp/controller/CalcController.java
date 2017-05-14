@@ -23,7 +23,7 @@ public class CalcController {
             return calcService.processExpression(inputExpression);
         } catch (Exception e) {
             e.printStackTrace();
-            return e.getMessage();
+            return "Please enter proper expression and for Gauss function 3 parameter should be greater than 0";
         }
 
     }

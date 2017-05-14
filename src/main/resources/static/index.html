@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-
-<div ng-app="calcApp" ng-controller="calcCtrl" class="cal">
-
+<div ng-style="{'background-color': '#87CEFA'}">
+<div ng-app="calcApp" ng-controller="calcCtrl" class="cal" >
 
     <label> Enter the values :</label> <input type="text" ng-model="expression" placeholder="Enter the expression" size="50"><br>
      <input type="button" ng-click="calculate()" value="Calculate"/><br>
 
-    <label>Calculated Output :</label> <input type="text" ng-model="result" placeholder="Result will display here">
+    <label>Calculated Output :</label> <input type="text" ng-model="result" placeholder="Result will display here" size="80">
     <br>
 
 
-
+</div>
 </div>
 
 <script>
@@ -24,10 +24,15 @@
          $scope.calculate = function () {
             /*alert("Hello, " + $scope.expression);*/
              $http.get("/calculate/"+$scope.expression)
-                     .then(function(response) {
-                         $scope.result = response.data;
+                     .success(function (data){
+                         $scope.result = data;
+                     })
+                     .error(function (error, status){
+                         $scope.data.error = { message: error, status: status};
+                         console.log($scope.data.error.status);
+                         $scope.messages = error;
                      });
-        }
+         }
 
 
     });
