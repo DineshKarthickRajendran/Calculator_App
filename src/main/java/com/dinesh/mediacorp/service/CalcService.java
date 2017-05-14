@@ -5,5 +5,5 @@ package com.dinesh.mediacorp.service;
  */
 public interface CalcService {
 
-    public String processExpression(String expression);
+    public String processExpression(String expression) throws Exception;
 }

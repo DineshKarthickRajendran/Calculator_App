@@ -19,7 +19,12 @@ public class CalcController {
     @RequestMapping("/calculate/{inputExpression}")
     public String defineCalculator(@PathVariable("inputExpression") String inputExpression){
 
-        return calcService.processExpression(inputExpression);
+        try {
+            return calcService.processExpression(inputExpression);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
 
     }
 

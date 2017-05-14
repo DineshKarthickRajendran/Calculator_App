@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class CalcServiceImpl implements CalcService{
 
     @Override
-    public String processExpression(String expression) {
+    public String processExpression(String expression) throws Exception {
 
         double calcResult = 0;
         try {
@@ -36,6 +36,7 @@ public class CalcServiceImpl implements CalcService{
 
            } catch (NoSuchMethodException e) {
             e.printStackTrace();
+            throw new Exception(e.getMessage());
         }
 
         return String.valueOf(calcResult);
