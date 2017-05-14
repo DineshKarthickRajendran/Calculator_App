@@ -20,7 +20,7 @@ public class CalcController {
     public String defineCalculator(@PathVariable("inputExpression") String inputExpression){
 
         try {
-            return calcService.processExpression(inputExpression);
+            return calcService.processExpression(inputExpression.replaceAll("divide","/"));
         } catch (Exception e) {
             e.printStackTrace();
             return "Please enter proper expression and for Gauss function 3 parameter should be greater than 0";

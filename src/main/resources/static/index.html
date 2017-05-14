@@ -21,18 +21,21 @@
     var app = angular.module('calcApp', []);
     app.controller('calcCtrl', function($scope,$http) {
         $scope.result=null;
-         $scope.calculate = function () {
+        $scope.calculate = function () {
             /*alert("Hello, " + $scope.expression);*/
-             $http.get("/calculate/"+$scope.expression)
-                     .success(function (data){
-                         $scope.result = data;
-                     })
-                     .error(function (error, status){
-                         $scope.data.error = { message: error, status: status};
-                         console.log($scope.data.error.status);
-                         $scope.messages = error;
-                     });
-         }
+
+            String.prototype.replaceAll = function(s,r){return this.split(s).join(r)}
+            var url = "/calculate/"+$scope.expression.replaceAll('/','divide')
+            $http.get(url)
+                    .success(function (data){
+                        $scope.result = data;
+                    })
+                    .error(function (error, status){
+                        $scope.data.error = { message: error, status: status};
+                        console.log($scope.data.error.status);
+                        $scope.messages = error;
+                    });
+        }
 
 
     });
